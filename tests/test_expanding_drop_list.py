@@ -1,19 +1,14 @@
 import pytest
-from selenium import webdriver
 from pages.main_page import MainPageScooter
 from locators.main_page_locators import MainPageLocators
 from data import TextAnswerDropList
+from conftest import driver
+import allure
 
 
 class TestExpandingDropList:
-
-    driver = None
-
-    @classmethod
-    def setup_class(cls):
-        # создали драйвер для браузера Chrome
-        cls.driver = webdriver.Chrome()
-
+    @allure.title('Проверка выпадающего списка "Вопросы о важном"')
+    @allure.description('При нажатии на стрелку, открывается соответствующий текст')
     @pytest.mark.parametrize(
         'question,answer,text',
         [
@@ -27,15 +22,10 @@ class TestExpandingDropList:
             [MainPageLocators.FAR_LIFE_DROP_LIST, MainPageLocators.FAR_LIFE_TEXT, TextAnswerDropList.text_far_life]
         ]
     )
-    def test_expanding_drop_list(self, question, answer, text):
-        self.driver.get('https://qa-scooter.praktikum-services.ru/')
+    def test_expanding_drop_list(self, driver, question, answer, text):
+        driver.get('https://qa-scooter.praktikum-services.ru/')
 
-        question_how_much = MainPageScooter(self.driver)
-        answer_text = question_how_much.expanding_list(question, answer)
+        question_answer = MainPageScooter(driver)
+        answer_text = question_answer.expanding_list(question, answer)
 
         assert answer_text == text
-
-    @classmethod
-    def teardown_class(cls):
-        # закрой браузер
-        cls.driver.quit()
