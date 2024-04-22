@@ -1,9 +1,8 @@
 from pages.main_page import MainPageScooter
 from pages.order_page import OrderPageScooter
-from locators.order_page_locators import OrderPageLocators
 from conftest import driver
-from helpers import DataCalendar
 import allure
+from data import DataForOdrer
 
 
 class TestOrderScooter:
@@ -18,8 +17,8 @@ class TestOrderScooter:
 
         seach_button_order.click_button_order_in_header()
 
-        test_order_scooter.first_step_order('Владислав', 'Иванов', 'г. Москва', OrderPageLocators.METRO_ROKOSOVSKI, '+79998887766')
-        test_order_scooter.second_step_order(DataCalendar.get_tomorrow_date(), OrderPageLocators.RENT_FOR_ONE_DAY, OrderPageLocators.CHECKBOX_COLOR_BLACK, '')
+        test_order_scooter.first_step_order(DataForOdrer.data_order_1['name'], DataForOdrer.data_order_1['family'], DataForOdrer.data_order_1['address'], DataForOdrer.data_order_1['metro'], DataForOdrer.data_order_1['phone'])
+        test_order_scooter.second_step_order(DataForOdrer.data_order_1['date'], DataForOdrer.data_order_1['rent'], DataForOdrer.data_order_1['color'], DataForOdrer.data_order_1['comment'])
         test_order_scooter.click_order_confirmation()
 
         head_succesful_order = test_order_scooter.successful_order()
@@ -35,8 +34,8 @@ class TestOrderScooter:
 
         seach_button_order.button_order_in_page()
 
-        test_order_scooter.first_step_order('Марина', 'Тараторкина', 'Московская область', OrderPageLocators.METRO_CHERKIZOVO, '+799988877644')
-        test_order_scooter.second_step_order(DataCalendar.get_next_week_date(), OrderPageLocators.RENT_FOR_TWO_DAYS,OrderPageLocators.CHECKBOX_COLOR_GREY, 'Хочу самокат')
+        test_order_scooter.first_step_order(DataForOdrer.data_order_2['name'], DataForOdrer.data_order_2['family'], DataForOdrer.data_order_2['address'], DataForOdrer.data_order_2['metro'], DataForOdrer.data_order_2['phone'])
+        test_order_scooter.second_step_order(DataForOdrer.data_order_2['date'], DataForOdrer.data_order_2['rent'], DataForOdrer.data_order_2['color'], DataForOdrer.data_order_2['comment'])
         test_order_scooter.click_order_confirmation()
 
         head_succesful_order = test_order_scooter.successful_order()

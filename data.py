@@ -1,3 +1,7 @@
+from locators.order_page_locators import OrderPageLocators
+from helpers import DataCalendar
+
+
 class TextAnswerDropList:
     text_how_much = 'Сутки — 400 рублей. Оплата курьеру — наличными или картой.'
     text_want_scooters = 'Пока что у нас так: один заказ — один самокат. Если хотите покататься с друзьями, можете просто сделать несколько заказов — один за другим.'
@@ -7,3 +11,29 @@ class TextAnswerDropList:
     text_bringing_charges = 'Самокат приезжает к вам с полной зарядкой. Этого хватает на восемь суток — даже если будете кататься без передышек и во сне. Зарядка не понадобится.'
     text_cansel = 'Да, пока самокат не привезли. Штрафа не будет, объяснительной записки тоже не попросим. Все же свои.'
     text_far_life = 'Да, обязательно. Всем самокатов! И Москве, и Московской области.'
+
+
+class DataForOdrer:
+    data_order_1 = {
+        'name': 'Владислав',
+        'family': 'Иванов',
+        'address': 'г. Москва',
+        'metro': OrderPageLocators.METRO_ROKOSOVSKI,
+        'phone': '+79998887766',
+        'date': DataCalendar.get_tomorrow_date(),
+        'rent': OrderPageLocators.RENT_FOR_ONE_DAY,
+        'color': OrderPageLocators.CHECKBOX_COLOR_BLACK,
+        'comment': ''
+    }
+
+    data_order_2 = {
+        'name': 'Марина',
+        'family': 'Тараторкина',
+        'address': 'Московская область',
+        'metro': OrderPageLocators.METRO_CHERKIZOVO,
+        'phone': '+799988877644',
+        'date': DataCalendar.get_next_week_date(),
+        'rent': OrderPageLocators.RENT_FOR_TWO_DAYS,
+        'color': OrderPageLocators.CHECKBOX_COLOR_GREY,
+        'comment': 'Хочу самокат'
+    }
