@@ -24,8 +24,6 @@ class TestExpandingDropList:
     )
     def test_expanding_drop_list(self, driver, question, answer, text):
         driver.get('https://qa-scooter.praktikum-services.ru/')
-
         question_answer = MainPageScooter(driver)
         answer_text = question_answer.expanding_list(question, answer)
-
         assert answer_text == text
