@@ -1,12 +1,9 @@
-from selenium.webdriver.support import expected_conditions
-from selenium.webdriver.support.wait import WebDriverWait
 from locators.order_page_locators import OrderPageLocators
 import allure
+from pages.base_page import BasePageScooter
 
 
-class OrderPageScooter:
-    def __init__(self, driver):
-        self.driver = driver
+class OrderPageScooter(BasePageScooter):
 
     # Ввод в поле "Имя"
     def enter_in_field_name(self, name):
@@ -32,10 +29,6 @@ class OrderPageScooter:
     # Нажатие на кнопку "Далее"
     def click_button_next(self):
         self.driver.find_element(*OrderPageLocators.BUTTON_NEXT_ORDER).click()
-
-    # Ожидание подзагрузки страницы
-    def wait_second_step(self):
-        WebDriverWait(self.driver, 3).until(expected_conditions.visibility_of_element_located(OrderPageLocators.BUTTON_FINAL_ORDER))
 
     # Ввод даты
     def enter_in_field_calendar(self, date):
@@ -63,22 +56,6 @@ class OrderPageScooter:
     def successful_order(self):
         return self.driver.find_element(*OrderPageLocators.VIEW_STATUS_BUTTON).text
 
-    # Клик по слову "Самокат" в хэдере
-    def click_header_scooter(self):
-        self.driver.find_element(*OrderPageLocators.BUTTON_HEAD_SCOOTER).click()
-
-    # Ожидание, пока загрузится откроется вторая вкладка
-    def wait_tab_open(self):
-        WebDriverWait(self.driver, 3).until(expected_conditions.number_of_windows_to_be(2))
-
-    # Клик по слову "Яндекс" в хэдере
-    def click_header_yandex(self):
-        self.driver.find_element(*OrderPageLocators.BUTTON_HEAD_YANDEX).click()
-
-    # Ожидание пока загрузится страница дзена
-    def wait_loading_dzen(self):
-        WebDriverWait(self.driver, 3).until(expected_conditions.title_is('Дзен'))
-
     # ШАГИ ДЛЯ СОКРАЩЕНИЯ ТЕСТОВ
     # Первый ШАГ в заполнении заказа
     @allure.step('Заполняем поля на первой странице заказа: имя, фамилию, адрес, метро, телефон, затем переходим к следующему шагу')
@@ -89,7 +66,7 @@ class OrderPageScooter:
         self.enter_in_field_metro(metro)
         self.enter_in_field_phone(phone)
         self.click_button_next()
-        self.wait_second_step()
+        self.wait_and_find_element(OrderPageLocators.BUTTON_FINAL_ORDER)
 
     # Второй ШАГ в заполнении заказа
     @allure.step('Заполняем поля на второй странице заказа: дату, период, цвет, комментарий и нажимаем "Заказать"')

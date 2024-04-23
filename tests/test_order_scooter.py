@@ -59,7 +59,7 @@ class TestOrderScooter:
         test_order_scooter = OrderPageScooter(driver)
 
         test_order_scooter.click_header_yandex()
-        test_order_scooter.wait_tab_open()
+        test_order_scooter.wait_and_open_tab()
         driver.switch_to.window(driver.window_handles[-1])
-        test_order_scooter.wait_loading_dzen()
+        test_order_scooter.wait_and_title_tab()
         assert 'https://dzen.ru/' in driver.current_url

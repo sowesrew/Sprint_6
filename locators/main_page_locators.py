@@ -2,9 +2,6 @@ from selenium.webdriver.common.by import By
 
 
 class MainPageLocators:
-    # Маленькая кнопка "Заказать" в header
-    ORDER_MIN_BUTTON = [By.XPATH, ".//div[@class = 'Header_Nav__AGCXC']/button[text() = 'Заказать']"]
-
     # Большая кнопка "Заказать"
     ORDER_BIG_BUTTON = [By.XPATH, ".//button[contains(@class, 'Button_UltraBig__UU3Lp')]"]
 

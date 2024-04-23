@@ -42,10 +42,3 @@ class OrderPageLocators:
 
     # кнопка "Посмотреть статус"
     VIEW_STATUS_BUTTON = [By.XPATH, ".//div[@class = 'Order_NextButton__1_rCA']/button[text() = 'Посмотреть статус']"]
-
-    # заголовок "Самокат"
-    BUTTON_HEAD_SCOOTER = [By.XPATH, ".//a[@class = 'Header_LogoScooter__3lsAR']"]
-
-    # заголовок "Яндекс"
-    BUTTON_HEAD_YANDEX = [By.XPATH, ".//a[@class = 'Header_LogoYandex__3TSOI']"]
-
