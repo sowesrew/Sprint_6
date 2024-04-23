@@ -2,6 +2,7 @@ import pytest
 from pages.main_page import MainPageScooter
 from locators.main_page_locators import MainPageLocators
 from data import TextAnswerDropList
+from data import DaraUrl
 from conftest import driver
 import allure
 
@@ -23,7 +24,7 @@ class TestExpandingDropList:
         ]
     )
     def test_expanding_drop_list(self, driver, question, answer, text):
-        driver.get('https://qa-scooter.praktikum-services.ru/')
         question_answer = MainPageScooter(driver)
+        question_answer.open_page(DaraUrl.SCOOTER)
         answer_text = question_answer.expanding_list(question, answer)
         assert answer_text == text

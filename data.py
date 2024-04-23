@@ -37,3 +37,8 @@ class DataForOdrer:
         'color': OrderPageLocators.CHECKBOX_COLOR_GREY,
         'comment': 'Хочу самокат'
     }
+
+
+class DaraUrl:
+    SCOOTER = 'https://qa-scooter.praktikum-services.ru/'
+    DZEN = 'https://dzen.ru/'

@@ -43,3 +43,7 @@ class BasePageScooter:
     # Нажатие на логотип "Яндекс" в хэдере
     def click_header_yandex(self):
         self.driver.find_element(*BasePageLocators.BUTTON_HEAD_YANDEX).click()
+
+    # Открытие страницы
+    def open_page(self, url):
+        self.driver.get(url)
